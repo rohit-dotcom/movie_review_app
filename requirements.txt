@@ -6,4 +6,3 @@ keras-preprocessing==1.1.0
 tensorboard==2.1.0
 tensorflow==2.5.0rc0
 tensorflow-estimator==2.5.0rc0
-tensorflow-gpu==2.5.0rc0
