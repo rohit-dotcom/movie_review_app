@@ -1,0 +1,5 @@
+.ebextensions
+.idea
+.ebignore
+app_file.zip
+conda-requriements.txt

@@ -1,25 +1,25 @@
 from flask import (Flask, render_template, abort,url_for,
                    jsonify, request, redirect)
 import re
-#import tensorflow as tf
+import tensorflow as tf
 import keras
 from keras.preprocessing.text import one_hot
 from keras.preprocessing.sequence import pad_sequences
 import os
 import json
 
-#gpus = tf.config.experimental.list_physical_devices('GPU')
-#if gpus:
-#    try:
-#        # Currently, memory growth needs to be the same across GPUs
-#        for gpu in gpus:
-#            tf.config.experimental.set_memory_growth(gpu, True)
-#        logical_gpus = tf.config.experimental.list_logical_devices('GPU')
-#        print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
-#    except RuntimeError as e:
-#        # Memory growth must be set before GPUs have been initialized
-#        print(e)
-#
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus:
+    try:
+         #Currently, memory growth needs to be the same across GPUs
+        for gpu in gpus:
+            tf.config.experimental.set_memory_growth(gpu, True)
+        logical_gpus = tf.config.experimental.list_logical_devices('GPU')
+        print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
+    except RuntimeError as e:
+         #Memory growth must be set before GPUs have been initialized
+        print(e)
+
 app=Flask(__name__)
 
 
@@ -29,7 +29,7 @@ def model_loader(modelpath):
     with open(config_file) as f:
         json_config = json.load(f)
     print(json_config)
-    model_arch = keras.Sequential.from_config(json_config)
+    model_arch = tf.keras.Sequential.from_config(json_config)
     model_arch.summary()
     model_arch.load_weights(weights_path)
 
